@@ -8,7 +8,7 @@ import base64
 image = Image.open('./image/logo-bni.png', mode='r')
 
 st.set_page_config(
-     page_title="HC-Analytics",
+     page_title="BNI-HACTICS",
      page_icon=image,
      layout="wide",
      initial_sidebar_state="expanded",
