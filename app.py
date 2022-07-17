@@ -71,7 +71,7 @@ def main():
     password = st.sidebar.text_input("Password", type = 'password')
 
     if st.sidebar.checkbox("Login"):
-        if password == '':
+        if username == 'user' and password == 'bni46':
 
             # progress = st.progress(0)
             # from time import sleep
