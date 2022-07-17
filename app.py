@@ -88,7 +88,7 @@ def main():
 
             app.run()
         else:
-            st.sidebar.info("Invalid username or password")
+            st.sidebar.error("Invalid username or password")
 
     try:
         container.write("")
