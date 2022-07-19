@@ -89,7 +89,7 @@ def app():
     fig, ax = plt.subplots()
 
     sns.set(rc={'figure.facecolor':(0,0,0,0)})
-    sns.heatmap(df_s.corr(), ax=ax)
+    sns.heatmap(df_s.corr(), ax=ax, annot=True, vmin=-1, vmax=1, linewidth=0.3)
 
     df_test = df_test.reset_index(drop=True)
 
