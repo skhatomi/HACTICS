@@ -57,9 +57,9 @@ def app():
 
     X_train,X_test,y_train,y_test = train_test_split(X,y,test_size =.3,random_state=2)
 
-    from sklearn import ensemble
-    gb_clf = ensemble.GradientBoostingClassifier(n_estimators=50)
-    gb_clf.fit(X_train,y_train)
+    from sklearn import discriminant_analysis
+    LDA = discriminant_analysis.LinearDiscriminantAnalysis()
+    LDA.fit(X_train, y_train)
 
     if uploaded_file is not None:
         df_test = pd.read_excel(uploaded_file,engine='openpyxl', index_col=0)
@@ -77,7 +77,7 @@ def app():
 
         X = df_s.drop(columns=["NAMA", "DOMISILI"])
 
-    df_s['TIER PREDICTION'] = gb_clf.predict(X)
+    df_s['TIER PREDICTION'] = LDA.predict(X)
 
     df_s['TIER PREDICTION'] = df_s['TIER PREDICTION'].replace(['TIER 1', 'TIER 2', 'TIER 3', 'TIER 4', 'TIER 5'], [4,3,2,1,0])
 
@@ -86,7 +86,7 @@ def app():
     sns.set(rc={'figure.facecolor':(0,0,0,0)})
     sns.heatmap(df_s.corr(), ax=ax, annot=True, vmin=-1, vmax=1, linewidth=0.3)
 
-    df_s['TIER PREDICTION'] = gb_clf.predict(X)
+    df_s['TIER PREDICTION'] = LDA.predict(X)
 
     df_test = df_test.reset_index(drop = True)
 
@@ -133,7 +133,7 @@ def app():
 
     with col1:
 
-        st.write("AKURASI DATA: ", str(gb_clf.score(X_test, y_test)))
+        st.write("AKURASI DATA: ", str(LDA.score(X_test, y_test)))
 
         st.markdown("""---""")
 
